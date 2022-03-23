@@ -169,47 +169,33 @@ char * dateStr(Date date)
  */
 Date dateFromStr(const char *s)
 {
-	Date ret = { 0,0,0 };
+	Date ret = { 0, '\0', '\0' };
 	char *p, *s2;
 
 	if ((s2 = strdup(s)) == NULL) {
 		printf("out of memory\n");
-		return(ret);
 	} 
 	else 
 	{
-		if ((p = strtok(s2, "/-:.")) == NULL) {
+		p = strtok(s2, "/-:.");
+		if (p == NULL) 
 			printf("%s is not of the form YYYY-MM-DD\n", s);
-			free(s2);
-			return(ret);
-		}
-		ret.year = atoi(p);
-    
-    		if ((p = strtok(NULL, "/-:.")) == NULL) {
-			printf("%s is not of the form YYYY-MM-DD\n", s);
-			free(s2);
-			return(ret);
-		}
-    		ret.month = atoi(p);
+		while (p != NULL) {
+			if (ret.year == 0)
+				ret.year = atoi(p);
+			else if (ret.month == 0)
+				ret.month = atoi(p);
+			else if (ret.day == 0)
+				ret.day = atoi(p);
+			// printf("p:%s y:%d m:%d d:%d\n", p, ret.year, ret.month, ret.day);
+			p = strtok(NULL, "/-:.");
+		}	
 
-		if (ret.month < 1 || ret.month > 12) {
+		if (ret.month < 1 || ret.month > 12)
 			printf("illegal month in %s (YYYY-MM-DD)\n", s);
-			free(s2);
-			return(ret);
-		}
-
-		if ((p = strtok(NULL, "/-:.")) == NULL) {
-			printf("%s is not of the form YYYY-MM-DD\n", s);
-			free(s2);
-			return(ret);
-		}
-		ret.day = atoi(p);
-
-		if (ret.day < 1 || ret.day > dateDaysInMonth(ret.month, ret.year)) {
+		
+		if (ret.day < 1 || ret.day > dateDaysInMonth(ret.month, ret.year)) 
 			printf("illegal day in %s (YYYY-MM-DD)\n", s);
-			free(s2);
-			return(ret);
-		}
 	}
 	free(s2);
 	return ret;
