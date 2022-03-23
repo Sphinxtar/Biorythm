@@ -1,2 +1,2 @@
-Biorythm Plotter
-Brutally hacked to run on fedora with no dependencies.
+Biorythm Plotter<br>
+Rudely hacked to run on fedora 35 with just repo available dependencies.
