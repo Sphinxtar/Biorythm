@@ -170,6 +170,9 @@ int main(int argc, char *argv[])
 					case 'P':
 						what |= PLOT_PHY;
 						continue;
+					default:
+						puts("No such option available.");
+						exit(1);
 				}
 			}
                 }
