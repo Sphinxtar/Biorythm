@@ -196,8 +196,9 @@ Date dateFromStr(const char *s)
 		
 		if (ret.day < 1 || ret.day > dateDaysInMonth(ret.month, ret.year)) 
 			printf("illegal day in %s (YYYY-MM-DD)\n", s);
+
+		free(s2);
 	}
-	free(s2);
 	return ret;
 }
 /* EOF */
