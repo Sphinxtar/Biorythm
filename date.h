@@ -17,7 +17,7 @@ int  dateIsLeapYear(int year);
 int  dateDaysInMonth(int month, int year);
 int  dateGetNumDays(Date d0, Date d1);
 void dateInc(Date *date);
-char *dateStr(Date date);
+char * dateStr(Date date);
 Date dateFromStr(const char *s);
 
 #ifdef __cplusplus
