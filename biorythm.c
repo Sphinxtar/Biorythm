@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 	int  ndays = 0, what = 0;
 	Date birth, from;
      
-	if (argc < 4) 
+	if (argc < 5) 
 	{
 		usage();
 	}
